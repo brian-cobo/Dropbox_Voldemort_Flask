@@ -1,0 +1,20 @@
+# Directories
+/venv
+/venv2
+**/__pycache__
+/.git
+
+# File Types
+*.xml
+*.sqlite3
+*.idea
+*.pyc
+*.pdf
+*.DS_Store
+
+# Specific Files
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
