@@ -4,17 +4,17 @@ import json
 from PDFReaderService import PDFReaderService
 from chamber_of_secrets import get_secret
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 dropbox_client_secret = get_secret('DROPBOX_SIGN_API_SECRET')
 dropbox_sign_api_uri = f"https://{dropbox_client_secret}:@api.hellosign.com/v3/"
 
-@app.route('/')
+@application.route('/')
 def hello_world():
     return 'Hello World!'
 
 
-@app.route('/dropboxsign/account/')
+@application.route('/dropboxsign/account/')
 def get_dropbox_sign_account():
     if request.method == 'GET':
         email_address = (request.json).get('email_address')
@@ -34,7 +34,7 @@ def get_dropbox_sign_account():
             print("Exception when calling Dropbox Sign API: %s\n" % e)
 
 
-@app.route('/dropboxsign/signature_request/list/')
+@application.route('/dropboxsign/signature_request/list/')
 def get_signature_request_list():
     if request.method == 'GET':
         email_address = (request.json).get('email_address')
@@ -53,7 +53,7 @@ def get_signature_request_list():
                 print("Exception when calling Dropbox Sign API: %s\n" % e)
 
 
-@app.route('/dropboxsign/signature_request/')
+@application.route('/dropboxsign/signature_request/')
 def get_signature_request():
     if request.method == 'GET':
         signature_request_id = (request.json).get('signature_request_id')
@@ -71,7 +71,7 @@ def get_signature_request():
                 print("Exception when calling Dropbox Sign API: %s\n" % e)
 
 
-@app.route('/dropboxsign/signature_request/file_download_url/')
+@application.route('/dropboxsign/signature_request/file_download_url/')
 def get_file_download_uri():
     if request.method == 'GET':
         signature_request_id = (request.json).get('signature_request_id')
@@ -88,7 +88,7 @@ def get_file_download_uri():
             except Exception as e:
                 print("Exception when calling Dropbox Sign API: %s\n" % e)
 
-@app.route('/dropboxsign/pdfreader/')
+@application.route('/dropboxsign/pdfreader/')
 def get_text_from_pdf():
     if request.method == 'GET':
         file_uri = (request.json).get('file_uri')
@@ -104,4 +104,4 @@ def get_text_from_pdf():
 
 
 if __name__ == '__main__':
-    app.run()
+    application.run()
