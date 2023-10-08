@@ -3,11 +3,13 @@ import requests
 import json
 from PDFReaderService import PDFReaderService
 from chamber_of_secrets import get_secret
+from ChatGPTService import get_chat_gpt_response
 
 application = Flask(__name__)
 
 dropbox_client_secret = get_secret('DROPBOX_SIGN_API_SECRET')
 dropbox_sign_api_uri = f"https://{dropbox_client_secret}:@api.hellosign.com/v3/"
+
 
 @application.route('/')
 def hello_world():
@@ -88,6 +90,7 @@ def get_file_download_uri():
             except Exception as e:
                 print("Exception when calling Dropbox Sign API: %s\n" % e)
 
+
 @application.route('/dropboxsign/pdfreader/')
 def get_text_from_pdf():
     if request.method == 'GET':
@@ -101,6 +104,30 @@ def get_text_from_pdf():
                 return _pdf_reader.get_text_from_pdf(file_uri), 200
             except Exception as e:
                 print("Exception when calling Dropbox Sign API: %s\n" % e)
+
+
+@application.route('/chatgpt/summarize/')
+def summarize_document_chatgpt():
+    if request.method == 'GET':
+        body = request.json
+        try:
+            prompt_message = f"Summarize the following.\n\"{body['document_text']}\""
+            response = get_chat_gpt_response(prompt=prompt_message, max_tokens=500)
+            return {'text': response}, 200
+        except Exception as e:
+            print("Exception when calling Chat GPT API: %s\n" % e)
+
+
+@application.route('/chatgpt/translate/')
+def translate_document_chatgpt():
+    if request.method == 'GET':
+        body = request.json
+        try:
+            prompt_message = f"translate the following into {body['trasnlate_to_what']}.\n\"{body['document_text']}\""
+            response = get_chat_gpt_response(prompt=prompt_message, max_tokens=500)
+            return {'text': response}, 200
+        except Exception as e:
+            print("Exception when calling Chat GPT API: %s\n" % e)
 
 
 if __name__ == '__main__':
