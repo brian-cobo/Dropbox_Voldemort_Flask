@@ -1,0 +1,106 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "slots": [],
+          "name": "HelloWorldIntent",
+          "samples": [
+            "hello",
+            "how are you",
+            "say hi world",
+            "say hi",
+            "hi",
+            "say hello world",
+            "say hello"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "slots": [],
+          "name": "CheckDocumentQueueIntent",
+          "samples": [
+            "Do I have any documents that need to be signed",
+            "Check my queue"
+          ]
+        },
+        {
+          "slots": [],
+          "name": "GetDocumentDataIntent",
+          "samples": [
+            "Tell me about my current document",
+            "Tell me about them",
+            "I would like to hear about them"
+          ]
+        },
+        {
+          "slots": [],
+          "name": "MoveOnToNextDocumentIntent",
+          "samples": [
+            "move on to the next document"
+          ]
+        },
+        {
+          "slots": [],
+          "name": "ReadCurrentDocumentIntent",
+          "samples": [
+            "read the current document"
+          ]
+        },
+        {
+          "slots": [],
+          "name": "SummarizeDocumentIntent",
+          "samples": [
+            "Summarize the current document",
+            "Summarize"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "language",
+              "type": "AMAZON.Actor"
+            }
+          ],
+          "name": "TranslateIntent",
+          "samples": [
+            "Translate the current document to {language}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "summaryLanguage",
+              "type": "AMAZON.Language"
+            }
+          ],
+          "name": "TranslateSummaryIntent",
+          "samples": [
+            "translate the current documents summary to {summaryLanguage}"
+          ]
+        }
+      ],
+      "types": [],
+      "invocationName": "check my documents"
+    }
+  }
+}

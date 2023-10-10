@@ -17,13 +17,13 @@ def get_secrets_dict():
     # Initialize the AWS Secrets Manager client
     session = boto3.session.Session()
     client = session.client(
-        service_name='secretsmanager',
-        region_name="us-west-2"
+        service_name='replace_with_name',
+        region_name="replace_with_your_region"
     )
 
     try:
         get_secret_value_response = client.get_secret_value(
-            SecretId="the_chamber_of_secrets"
+            SecretId="Replace_with_secret_id"
         )
         return json.loads(get_secret_value_response['SecretString'])
     except ClientError as e:
